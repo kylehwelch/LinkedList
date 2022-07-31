@@ -3,6 +3,7 @@ package com.zipcodewilmington.singlylinkedlist;
 public class SinglyLinkedList<T> {
 
     Node<T> head = null;
+    Node<T> tail = null;
 
     public SinglyLinkedList(){
         head = null;
@@ -18,6 +19,7 @@ public class SinglyLinkedList<T> {
 
     public void add(T data){
         Node<T> node = new Node(data);
+        Node<T> previous = null;
         if (head == null){
             head = node;
             return;
@@ -26,24 +28,24 @@ public class SinglyLinkedList<T> {
             head.next = node;
             return;
         }
-        Node<T> tail = head.next;
+        tail = head.next;
         while (tail.next != null) {
             tail = tail.next;
         }
-        tail = node;
+        tail.next= node;
     }
 
-    public Integer find(T input){
+    public Integer find(T inputData){
         int index = 0;
          if (head == null) {
              return -1;
          }
-         if (head.data == input || head.data.equals(input)) {
+         if (head.data == inputData || head.data.equals(inputData)) {
              return index;
          }
          Node<T> node = head.next;
          index = 1;
-         while (node.data != input || !node.data.equals(input)) {
+         while (node.data != inputData || !node.data.equals(inputData)) {
              if (node.next == null) {
                  index = -1;
                  break;
@@ -52,6 +54,21 @@ public class SinglyLinkedList<T> {
              index++;
          }
         return index;
+    }
+
+    public boolean contains (T inputData) {
+//        Node<T> current = head;
+//        if (current.data == inputData) {
+//            return true;
+//        }
+//        while (current.data != inputData || current.next != null) {
+//            if (current.data == inputData) {
+//                return true;
+//            }
+//            current = current.next;
+//        }
+//        return false;
+        return this.find(inputData) > -1;
     }
 
     public void remove (Integer index) {
@@ -70,19 +87,23 @@ public class SinglyLinkedList<T> {
         previous.next = previous.next.next;
     }
 
-    public boolean contains (T input) {
-        boolean answer = false;
+    public Integer size (){
+        return (this.find(tail.data) +2);
+    }
+
+    public T get(int index){
         Node<T> current = head;
-        if (current.data == input) {
-            return true;
-        }
-        while (current.data != input || current.next != null) {
-            if (current.data == input) {
-                answer = true;
-                break;
+        int count = 0;
+        if (head == null) return null;
+        while (current != null || count <= index) {
+            if (count == index) {
+                return current.data;
             }
             current = current.next;
+            count++;
         }
-        return answer;
+        return null;
     }
+
+
 }
