@@ -165,4 +165,81 @@ public class SinglyLinkedListTest {
 
         Assert.assertEquals(actual, 31);
     }
+
+    @Test
+    public void testCopy(){
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        sll.add(4);
+        sll.add(5);
+        sll.add(6);
+        sll.add(11);
+        sll.add(21);
+        sll.add(31);
+        sll.add(41);
+        sll.add(15);
+        sll.add(16);
+
+        SinglyLinkedList<Integer> actual = new SinglyLinkedList<Integer>();
+        actual = sll.copy();
+
+        Assert.assertNotEquals(actual, sll);
+        Assert.assertEquals(actual.get(3), sll.get(3));
+        Assert.assertEquals(actual.get(15), sll.get(15));
+    }
+
+    @Test
+    public void testSort1(){
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(1);
+        sll.add(3);
+        sll.add(4);
+        sll.add(6);
+        sll.add(2);
+        sll.add(5);
+
+        SinglyLinkedList<Integer> sorted = new SinglyLinkedList<Integer>();
+        sorted = sll.sort();
+
+        Assert.assertEquals(sorted.get(5), 6);
+    }
+
+    @Test
+    public void testSort2() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<>();
+        sll.add(41);
+        sll.add(2);
+        sll.add(37);
+        sll.add(4);
+        sll.add(35);
+        sll.add(64);
+        sll.add(11);
+        sll.add(221);
+        sll.add(31);
+        sll.add(41);
+        sll.add(15);
+        sll.add(16);
+
+        SinglyLinkedList<Integer> sorted;
+        sorted = sll.sort();
+
+        Assert.assertEquals(sorted.get(2), 11);
+    }
+
+    @Test
+    public void testSort3(){
+        SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
+        sll.add("aaa");
+        sll.add("aae");
+        sll.add("aad");
+        sll.add("aaf");
+        sll.add("aab");
+        sll.add("aac");
+        SinglyLinkedList<String> sorted;
+        sorted = sll.sort();
+
+        Assert.assertEquals(sorted.get(2), "aac");
+    }
 }

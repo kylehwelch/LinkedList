@@ -1,6 +1,6 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList<T extends Comparable<T>> {
 
     Node<T> head = null;
     Node<T> tail = null;
@@ -99,11 +99,49 @@ public class SinglyLinkedList<T> {
             if (count == index) {
                 return current.data;
             }
+            if (current.next == null) {
+                count++;
+                break;
+            }
             current = current.next;
             count++;
         }
         return null;
     }
 
+    public SinglyLinkedList<T> copy(){
+        SinglyLinkedList<T> sllCopy = new SinglyLinkedList<>();
+        for (Node <T> node = head ; node != null ; node = node.next) {
+            sllCopy.add(node.data);
+        }
+        return sllCopy;
+    }
+
+    public SinglyLinkedList<T> sort() {
+        T tmp;
+        Node<T> current = head;
+        Node<T> theNext;
+        while (current != null) {
+            theNext = current.next;
+            while (theNext != null) {
+                if (current.data.compareTo(theNext.data) > 0) {
+                    tmp = current.data;
+                    current.data = theNext.data;
+                    theNext.data = tmp;
+                }
+                theNext = theNext.next;
+            }
+            current = current.next;
+        }
+        return this;
+    }
+
+    public SinglyLinkedList<T> reverse(){
+
+
+
+
+        return this;
+    }
 
 }
