@@ -242,4 +242,54 @@ public class SinglyLinkedListTest {
 
         Assert.assertEquals(sorted.get(2), "aac");
     }
+
+    @Test
+    public void testReverse1(){
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        sll.add(4);
+        sll.add(5);
+        sll.add(6);
+
+        SinglyLinkedList<Integer> reversed;
+        reversed = sll.reverse();
+
+        Assert.assertEquals(reversed.get(5), 1);
+    }
+
+    @Test
+    public void testReverse2(){
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        sll.add(4);
+        sll.add(5);
+        sll.add(6);
+
+        SinglyLinkedList<Integer> reversed;
+        reversed = sll.reverse();
+
+        Assert.assertEquals(reversed.get(0),6);
+    }
+
+    @Test
+    public void testSubString(){
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        sll.add(4);
+        sll.add(5);
+        sll.add(6);
+
+        SinglyLinkedList<Integer> subs;
+        subs = sll.subString(2, 4);
+
+        Assert.assertEquals(subs.get(0),3);
+        Assert.assertEquals(subs.get(1),4);
+    }
+
 }

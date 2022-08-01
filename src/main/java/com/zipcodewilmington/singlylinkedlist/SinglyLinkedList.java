@@ -137,11 +137,21 @@ public class SinglyLinkedList<T extends Comparable<T>> {
     }
 
     public SinglyLinkedList<T> reverse(){
+        SinglyLinkedList<T> sllReverse = new SinglyLinkedList<>();
+        int size = this.size();
 
-
-
-
-        return this;
+        for (int i = size-1; i >= 0 ; i--) {
+            sllReverse.add(this.get(i));
+        }
+        return sllReverse;
     }
 
+    public SinglyLinkedList<T> subString(int start, int end){
+        SinglyLinkedList<T> subs = new SinglyLinkedList<>();
+
+        for (int i = start; i < end ; i++) {
+            subs.add(this.get(i));
+        }
+        return subs;
+    }
 }
